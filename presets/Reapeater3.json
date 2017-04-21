@@ -1,0 +1,10 @@
+{
+"name":"Reapeater 3",
+"arrOfPresetsEffects":[
+  {"Mobius Rotate":[{"Zoom In Point":{"expression":null,"value":"itemWidth*0.75,itemHight*0.5"}},{"Zoom Out Point":{"expression":null,"value":"itemWidth*0.25,itemHight*0.5"}},{"Angle":{"expression":null,"value":90}}]},
+  {"Repeater":[{"Repeat X":{"expression":null,"value":1}},{"Repeat Y":{"expression":null,"value":1}},{"Mirror X":{"expression":null,"value":0}}]},
+  {"Repeater":[{"Repeat X":{"expression":null,"value":1}},{"Repeat Y":{"expression":null,"value":1}},{"Mirror X":{"expression":null,"value":0}}]},
+  {"Repeater":[{"Repeat X":{"expression":null,"value":1}},{"Repeat Y":{"expression":null,"value":1}},{"Mirror X":{"expression":null,"value":0}}]},
+  {"Repeater":[{"Repeat X":{"expression":null,"value":1}},{"Repeat Y":{"expression":null,"value":1}},{"Mirror X":{"expression":null,"value":0}}]}
+]
+}

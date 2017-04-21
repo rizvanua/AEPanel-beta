@@ -1,0 +1,7 @@
+{
+"name":"Wormhole 1",
+"arrOfPresetsEffects":[
+  {"Mobius Zoom":[{"Zoom In Point":{"expression":null,"value":"itemWidth*0.5,itemHight*1"}},{"Zoom Out Point":{"expression":null,"value":"itemWidth*0.5,itemHight*0"}},{"Zoom Factor":{"expression":null,"value":3}}]},
+  {"Rotator":[{"Tilt (X axis)":{"expression":null,"value":90}}]}
+]
+}

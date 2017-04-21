@@ -1,0 +1,16 @@
+{
+	"name":"Mirrors 1",
+	"arrOfPresetsEffects":[
+		{"Slider Control":[{"effectName":"ZoomSlider1","Slider":{"expression":"seedRandom(123456, true); 150*(2+Math.sin((1+random())*time));"}}]},
+		{"Slider Control":[{"effectName":"ZoomSlider2","Slider":{"value":0.33}}]},
+		{"Angle Control":[{"effectName":"ZoomAngle1","Angle":{"expression":"seedRandom(123456, true); 360*(2+Math.sin((1+random())*time));"}}]},
+		{"Angle Control":[{"effectName":"ZoomAngle2","Angle":{"value":66}}]},
+		{"Point Control":[{"effectName":"ZoomPoint","Point":{"value":"itemWidth*0.5,itemHight*0.5"}}]},
+		{"Magnifying Glass":[{"Point of Interest":{"expression":"NN=0; P0=thisLayer.effect(\"ZoomPoint\").point.value; r = thisLayer.effect(\"ZoomSlider1\").slider.value; a = degreesToRadians(thisLayer.effect(\"ZoomAngle1\").angle.value); P0+[r*Math.cos(a+NN*(Math.PI/3)), r*Math.sin(a+NN*(Math.PI/3))];"}},{"FOV":{"expression":"thisLayer.effect(\"ZoomAngle2\").angle.value;"}},{"Magnify":{"expression":"thisLayer.effect(\"ZoomSlider2\").slider.value;"}}]},
+		{"Magnifying Glass":[{"Point of Interest":{"expression":"NN=1; P0=thisLayer.effect(\"ZoomPoint\").point.value; r = thisLayer.effect(\"ZoomSlider1\").slider.value; a = degreesToRadians(thisLayer.effect(\"ZoomAngle1\").angle.value); P0+[r*Math.cos(a+NN*(Math.PI/3)), r*Math.sin(a+NN*(Math.PI/3))];"}},{"FOV":{"expression":"thisLayer.effect(\"ZoomAngle2\").angle.value;"}},{"Magnify":{"expression":"thisLayer.effect(\"ZoomSlider2\").slider.value;"}}]},
+		{"Magnifying Glass":[{"Point of Interest":{"expression":"NN=2; P0=thisLayer.effect(\"ZoomPoint\").point.value; r = thisLayer.effect(\"ZoomSlider1\").slider.value; a = degreesToRadians(thisLayer.effect(\"ZoomAngle1\").angle.value); P0+[r*Math.cos(a+NN*(Math.PI/3)), r*Math.sin(a+NN*(Math.PI/3))];"}},{"FOV":{"expression":"thisLayer.effect(\"ZoomAngle2\").angle.value;"}},{"Magnify":{"expression":"thisLayer.effect(\"ZoomSlider2\").slider.value;"}}]},
+		{"Magnifying Glass":[{"Point of Interest":{"expression":"NN=3; P0=thisLayer.effect(\"ZoomPoint\").point.value; r = thisLayer.effect(\"ZoomSlider1\").slider.value; a = degreesToRadians(thisLayer.effect(\"ZoomAngle1\").angle.value); P0+[r*Math.cos(a+NN*(Math.PI/3)), r*Math.sin(a+NN*(Math.PI/3))];"}},{"FOV":{"expression":"thisLayer.effect(\"ZoomAngle2\").angle.value;"}},{"Magnify":{"expression":"thisLayer.effect(\"ZoomSlider2\").slider.value;"}}]},
+		{"Magnifying Glass":[{"Point of Interest":{"expression":"NN=4; P0=thisLayer.effect(\"ZoomPoint\").point.value; r = thisLayer.effect(\"ZoomSlider1\").slider.value; a = degreesToRadians(thisLayer.effect(\"ZoomAngle1\").angle.value); P0+[r*Math.cos(a+NN*(Math.PI/3)), r*Math.sin(a+NN*(Math.PI/3))];"}},{"FOV":{"expression":"thisLayer.effect(\"ZoomAngle2\").angle.value;"}},{"Magnify":{"expression":"thisLayer.effect(\"ZoomSlider2\").slider.value;"}}]},
+		{"Magnifying Glass":[{"Point of Interest":{"expression":"NN=5; P0=thisLayer.effect(\"ZoomPoint\").point.value; r = thisLayer.effect(\"ZoomSlider1\").slider.value; a = degreesToRadians(thisLayer.effect(\"ZoomAngle1\").angle.value); P0+[r*Math.cos(a+NN*(Math.PI/3)), r*Math.sin(a+NN*(Math.PI/3))];"}},{"FOV":{"expression":"thisLayer.effect(\"ZoomAngle2\").angle.value;"}},{"Magnify":{"expression":"thisLayer.effect(\"ZoomSlider2\").slider.value;"}}]}
+	]
+}

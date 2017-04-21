@@ -1,0 +1,11 @@
+{
+	"name":"Waves 3",
+	"arrOfPresetsEffects":[
+		{"Slider Control":[{"effectName":"Wave3Slider1","Slider":{"expression":"var progress = (time-inPoint)/(outPoint-inPoint); var triangle = ((progress <= 0.5) ? progress * 2.0 : (1.0 - progress) * 2.0); triangle * 20;"}}]},
+		{"Angle Control":[{"effectName":"Wave3Angle1","Angle":{"expression":"var progress = (time-inPoint)/(outPoint-inPoint); progress * 4 * 360;"}}]},
+		{"Circular Waves":[{"Amplitude":{"expression":"thisLayer.effect(\"Wave3Slider1\").slider.value"}},{"Phase":{"expression":"thisLayer.effect(\"Wave3Angle1\").angle.value"}},{"Max Latitude":{"expression":"var progress = (time-inPoint)/(outPoint-inPoint); progress * Math.PI;"}}]},
+		{"Meridian Waves":[{"Amplitude":{"expression":"thisLayer.effect(\"Wave3Slider1\").slider.value"}},{"Phase":{"expression":"thisLayer.effect(\"Wave3Angle1\").angle.value"}}]},
+		{"Meridian Waves":[{"Amplitude":{"expression":"thisLayer.effect(\"Wave3Slider1\").slider.value"}},{"Phase":{"expression":"thisLayer.effect(\"Wave3Angle1\").angle.value"}}]},
+		{"Meridian Waves":[{"Amplitude":{"expression":"thisLayer.effect(\"Wave3Slider1\").slider.value"}},{"Phase":{"expression":"thisLayer.effect(\"Wave3Angle1\").angle.value"}}]}
+	]
+}

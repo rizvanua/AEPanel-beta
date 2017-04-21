@@ -1,0 +1,9 @@
+{
+"name":"Wormhole 2",
+"arrOfPresetsEffects":[
+  {"Mobius Rotate":[{"Zoom In Point":{"expression":null,"value":"itemWidth*0.6333333,itemHight*0.5"}},{"Zoom Out Point":{"expression":null,"value":"itemWidth*0.3666666,itemHight*0.5"}},{"Angle":{"expression":null,"value":70}}]},
+  {"Repeater":[{"Repeat X":{"expression":null,"value":1}},{"Repeat Y":{"expression":null,"value":1}},{"Mirror X":{"expression":null,"value":0}}]},
+  {"Repeater":[{"Repeat X":{"expression":null,"value":1}},{"Repeat Y":{"expression":null,"value":1}},{"Mirror X":{"expression":null,"value":0}}]},
+  {"Mobius Rotate":[{"Zoom In Point":{"expression":null,"value":"itemWidth*0.4,itemHight*0.5"}},{"Zoom Out Point":{"expression":null,"value":"itemWidth*0.6,itemHight*0.5"}},{"Angle":{"expression":null,"value":0}}]}
+]
+}

@@ -1,0 +1,9 @@
+{
+	"name":"Little Planet 1",
+	"arrOfPresetsEffects":[
+		{"Slider Control":[{"effectName":"LP1Slider1","Slider":{"value":3}}]},
+		{"Angle Control":[{"effectName":"LP1Angle1","Angle":{"value":-90}}]},
+		{"Mobius Zoom":[{"Zoom In Point":{"expression":null,"value":"itemWidth*0.5,itemHight*0"}},{"Zoom Out Point":{"expression":null,"value":"itemWidth*0.5,itemHight*1"}},{"Zoom Factor":{"expression":"thisLayer.effect(\"LP1Slider1\").slider.value;"}}]},
+		{"Rotator":[{"Tilt (X axis)": {"expression":"thisLayer.effect(\"LP1Angle1\").angle.value"}}]}
+	]
+}

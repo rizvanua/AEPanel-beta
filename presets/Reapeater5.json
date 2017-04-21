@@ -1,0 +1,8 @@
+{
+"name":"Reapeater 5",
+"arrOfPresetsEffects":[
+  {"Mobius Rotate":[{"Zoom In Point":{"expression":null,"value":"itemWidth*0.5,itemHight*0.5"}},{"Zoom Out Point":{"expression":null,"value":"itemWidth*1,itemHight*0.5"}},{"Angle":{"expression":null,"value":90}}]},
+  {"Repeater":[{"Repeat X":{"expression":null,"value":1}},{"Repeat Y":{"expression":null,"value":1}}]},
+  {"Mobius Rotate":[{"Zoom In Point":{"expression":null,"value":"itemWidth*0.75,itemHight*0.5"}},{"Zoom Out Point":{"expression":null,"value":"itemWidth*0.25,itemHight*0.5"}},{"Angle":{"expression":null,"value":90}}]}
+]
+}

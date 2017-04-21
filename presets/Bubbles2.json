@@ -1,0 +1,15 @@
+{
+	"name":"Bubbles 2",
+	"arrOfPresetsEffects":[
+		{"Chrome Spheres":[{"Point of Interest":{"expression":"seedRandom(123456, true); x=random()*width+time*width*0.1; y=height/2+Math.sin(random()*time*5)*height/3; [x-width*Math.floor(x/width),y]"}},{"FOV":{"expression":"seedRandom(123456, true); 15*(2+Math.sin((1+random())*time))"}}]},
+		{"Chrome Spheres":[{"Point of Interest":{"expression":"seedRandom(123456, true); x=random()*width+time*width*0.1; y=height/2+Math.sin(random()*time*5)*height/3; [x-width*Math.floor(x/width),y]"}},{"FOV":{"expression":"seedRandom(123456, true); 15*(2+Math.sin((1+random())*time))"}}]},
+		{"Chrome Spheres":[{"Point of Interest":{"expression":"seedRandom(123456, true); x=random()*width+time*width*0.1; y=height/2+Math.sin(random()*time*5)*height/3; [x-width*Math.floor(x/width),y]"}},{"FOV":{"expression":"seedRandom(123456, true); 15*(2+Math.sin((1+random())*time))"}}]},
+		{"Chrome Spheres":[{"Point of Interest":{"expression":"seedRandom(123456, true); x=random()*width+time*width*0.1; y=height/2+Math.sin(random()*time*5)*height/3; [x-width*Math.floor(x/width),y]"}},{"FOV":{"expression":"seedRandom(123456, true); 15*(2+Math.sin((1+random())*time))"}}]},
+		{"Chrome Spheres":[{"Point of Interest":{"expression":"seedRandom(123456, true); x=random()*width+time*width*0.1; y=height/2+Math.sin(random()*time*5)*height/3; [x-width*Math.floor(x/width),y]"}},{"FOV":{"expression":"seedRandom(123456, true); 15*(2+Math.sin((1+random())*time))"}}]},
+		{"Chrome Spheres":[{"Point of Interest":{"expression":"seedRandom(123456, true); x=random()*width+time*width*0.1; y=height/2+Math.sin(random()*time*5)*height/3; [x-width*Math.floor(x/width),y]"}},{"FOV":{"expression":"seedRandom(123456, true); 15*(2+Math.sin((1+random())*time))"}}]},
+		{"Chrome Spheres":[{"Point of Interest":{"expression":"seedRandom(123456, true); x=random()*width+time*width*0.1; y=height/2+Math.sin(random()*time*5)*height/3; [x-width*Math.floor(x/width),y]"}},{"FOV":{"expression":"seedRandom(123456, true); 15*(2+Math.sin((1+random())*time))"}}]},
+		{"Chrome Spheres":[{"Point of Interest":{"expression":"seedRandom(123456, true); x=random()*width+time*width*0.1; y=height/2+Math.sin(random()*time*5)*height/3; [x-width*Math.floor(x/width),y]"}},{"FOV":{"expression":"seedRandom(123456, true); 15*(2+Math.sin((1+random())*time))"}}]},
+		{"Chrome Spheres":[{"Point of Interest":{"expression":"seedRandom(123456, true); x=random()*width+time*width*0.1; y=height/2+Math.sin(random()*time*5)*height/3; [x-width*Math.floor(x/width),y]"}},{"FOV":{"expression":"seedRandom(123456, true); 15*(2+Math.sin((1+random())*time))"}}]},
+		{"Chrome Spheres":[{"Point of Interest":{"expression":"seedRandom(123456, true); x=random()*width+time*width*0.1; y=height/2+Math.sin(random()*time*5)*height/3; [x-width*Math.floor(x/width),y]"}},{"FOV":{"expression":"seedRandom(123456, true); 15*(2+Math.sin((1+random())*time))"}}]}
+	]
+}

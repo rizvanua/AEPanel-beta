@@ -1,0 +1,10 @@
+{
+"name":"Little Planet 3",
+"arrOfPresetsEffects":[
+  {"Stretcher":[{"Strength":{"expression":null,"value":30}},{"Fixed Latitude":{"expression":null,"value":-90}}]},
+  {"Mobius Rotate":[{"Zoom In Point":{"expression":null,"value":"itemWidth*0.2666666,itemHight*0.5"}},{"Zoom Out Point":{"expression":null,"value":"itemWidth*0.7333333,itemHight*0.5"}},{"Angle":{"expression":null,"value":90}}]},
+  {"Repeater":[{"Repeat X":{"expression":null,"value": 1}},{"Repeat Y":{"expression":null,"value":1} },{"Mirror X":{"expression":null,"value": 0}}]},
+  {"Escher Droste":[{"Point of Interest":{"expression":null,"value":"itemWidth*0.5,itemHight*0"}},{"Zoom Factor":{"expression":null,"value":71}},{"Zoom Cut-off":{"expression":null,"value":2.12}}]},
+  {"Repeater":[{"Repeat X":{"expression":null,"value":1}},{"Repeat Y":{"expression":null,"value":0}},{"Mirror X":{"expression":null,"value":0}},{"Mirror Y":{"expression":null,"value":0}}]}
+]
+}

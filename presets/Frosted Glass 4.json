@@ -1,0 +1,8 @@
+{
+"name":"Frosted Glass 4",
+"arrOfPresetsEffects":[
+  {"Blur":[{"Blurriness":{"expression":null,"value":10}}]},
+  {"Color Gradients":[{"Points Number":{"expression":null,"value":1}},{"Color 1":{"expression":null,"value":[8, 3, 1, 1.0]}},{"Opacity":{"expression":null,"value":18}},{"Blending Mode":{"expression":null,"value":9}}]},
+  {"Circular Waves":[{"Amplitude":{"expression":null,"value":3}},{"Wavelength":{"expression":null,"value":13}},{"Decay":{"expression":null,"value":50}},{"Number Of Instances":{"expression":null,"value":20}}]}
+]
+}
