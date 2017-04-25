@@ -61,8 +61,6 @@ class createControlsWindows{
     pointCanvas.append(point);
     let pointInputX=$('<input>',{id:'point-inputX', class:'control-input', type:'text'});
     let pointInputY=$('<input>',{id:'point-inputY', class:'control-input', type:'text'});
-    //console.log(point);
-    //this.pointFunction();
     this.pointsWrap.append(pointCanvas);
     this.pointsWrap.append(pointInputX);
     this.pointsWrap.append(pointInputY);
@@ -184,6 +182,8 @@ console.log('sliderInputVal',sliderInputVal);
     let oldVal=0;
     let countCircle=0;
     let inputData=0;
+    let value;
+    let resAngle;
     //let outputData=0;
 
     //let knobEl=$("#knob");
@@ -207,7 +207,7 @@ console.log('sliderInputVal',sliderInputVal);
           value=(inputData.spin*1);
           data=(angleInputValueVal*1)+value;
         }*/
-        let value=(angleInputValue.val()*1);
+        value=(angleInputValue.val()*1);
         data=(angleInputSpin.val()*360)+value;
         inputData=parsRowdata(data);
         csInterface.evalScript(`$._ext.setAngleControlValue("${angleName}","${data}")`);
@@ -215,7 +215,6 @@ console.log('sliderInputVal',sliderInputVal);
             resAngle=Math.round((resAngle%1)*360);
         $("#knob").roundSlider("setValue", resAngle);
         countCircle=inputData.spin;
-        console.log(inputData.angle);
         angleInputValue.val(inputData.angle);
         angleInputSpin.val(inputData.spin);
         return data;
@@ -235,18 +234,7 @@ console.log('sliderInputVal',sliderInputVal);
     })
 
     csInterface.evalScript(`$._ext.getAngleControlValue("${angleName}")`, (res) => {
-      console.log(res);
 
-
-      /*let num=(res*1)/360;
-      if(num<0){
-        spin=Math.ceil(num)
-        }
-        else{
-        spin=Math.floor(num);
-        }
-      angle=((num%1)*360).toFixed(0);*/
-      //angle=Math.abs(angle);
       data=res;
       angleInputSpin.on("keypress",(e)=>{
         data=calcDataFromInput(e, data);
@@ -259,10 +247,10 @@ console.log('sliderInputVal',sliderInputVal);
       inputData=parsRowdata(data);
       angleInputSpin.val(inputData.spin);
       angleInputValue.val(inputData.angle);
-      console.log(inputData.angle);
-      let resAngle=(360+(inputData.angle*1))/360;
+
+          resAngle=(360+(inputData.angle*1))/360;
           resAngle=Math.round((resAngle%1)*360);
-          console.log(resAngle);
+
       countCircle=inputData.spin;
       $("#knob").roundSlider({
         handleShape: "round",
@@ -300,16 +288,7 @@ console.log('sliderInputVal',sliderInputVal);
     data=(countCircle*360)+Math.abs(args.value);
     console.log("data",data);
     inputData=parsRowdata(data);
-    //
-    /*let num=(data*1)/360;
-    if(num<0){
-      spin=Math.ceil(num)
-      }
-      else{
-      spin=Math.floor(num);
-      }
-    angle=((num%1)*360).toFixed(0);*/
-    //
+    
 
     angleInputSpin.val(inputData.spin);
     angleInputValue.val(inputData.angle);

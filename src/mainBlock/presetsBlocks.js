@@ -19,8 +19,9 @@ class presetsBlocks{
   createPresetsEffects(cordX,presetsType){
     let workBlock;
     let itemArr;
-    //let item;
+    let objPreset;
     let propertyOfEffectString;
+    let promise;
     //let lowestCoordY=GlobalStorage.undermostEffectBlock.y;
     //console.log(GlobalStorage.arrOfPresetsEffects[presetsType.name]);
   //  GlobalStorage.arrOfPresetsEffects[presetsType.name].forEach((itemName)=>{
@@ -41,10 +42,10 @@ class presetsBlocks{
       //console.log(" propertyOfEffectString ",propertyOfEffectString);
         csInterface.evalScript(`$._ext.applyEffectPresets("${item}",${propertyOfEffectString})`,(res)=>{//push data into extend script
         //let lowestCoordY=GlobalStorage.undermostEffectBlock.y+=40;
-        let objPreset=JSON.parse(res);
+        objPreset=JSON.parse(res);
         console.log(" objPreset /// ",objPreset);
         console.log(item);
-        let promise = new Promise(function(resolve, reject) {
+        promise = new Promise(function(resolve, reject) {
           if(item!='Slider Control'&&item!='Angle Control'&&item!='Point Control'){
             workBlock=new mainBlock().createBlockEffects(cordX,GlobalStorage.undermostEffectBlock.y+=40,item,objPreset);
           }
@@ -84,7 +85,7 @@ class presetsBlocks{
 
 
   });
-    for (var key in effectBlocks) {
+    //for (var key in effectBlocks) {
 
 
 
@@ -99,7 +100,7 @@ class presetsBlocks{
         GlobalStorage.effectCreateDrag.active=false// close ability to add this effect to dispatcher
     });*/
 
-    }
+    //}
 
       let propertyOfEffect=GlobalStorage.arrOfPresetsEffects[presetsType.name];
       /*console.log(propertyOfEffect);
@@ -130,7 +131,7 @@ class presetsBlocks{
     let objName=Object.keys(obj)[0];
     obj[objName].forEach((innerObj, innerNum)=>{
       //let innerObjName=Object.keys(innerObj)[0];
-      console.log('innerForEach',Object.keys(innerObj));
+      //console.log('innerForEach',Object.keys(innerObj));
       //let innerObjName=Object.keys(innerObj)[0];
       let innerObjName=Object.keys(innerObj).forEach((item)=>{
         objToStringlify[item]=innerObj[item];

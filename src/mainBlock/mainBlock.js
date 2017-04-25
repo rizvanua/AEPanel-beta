@@ -21,12 +21,19 @@ class mainBlock{
     this.pathCoords;
   }
   createBlockEffects(x,y,item,obj){
-    //console.log(obj.distrInst);
-    //let objectEffect=JSON.parse(obj);
-    //console.log(obj);
     let blockEffectName=obj.name;
     let workBlockSet=Snap.set();
     let typeNode="effects";
+    let EffectName;
+    let innerHTML;
+    let PathString;
+    let offset;
+    let MX;
+    let MY;
+    let LX;
+    let LY;
+    let pathCoords;
+    let target;
     workBlockSet.setEffectName=blockEffectName;
     workBlockSet.baseEffect=item.name;
     workBlockSet.point=obj.point;
@@ -98,7 +105,7 @@ class mainBlock{
           //let group=R.g(workBlock, title, dummy);
           //workBlockSet.push(group);
           //Create options angle, slider, angel
-console.log(obj.propArray);
+//console.log(obj.propArray);
             let propGroup=CreateProperties(obj.propArray);
 
 
@@ -111,11 +118,11 @@ console.log(obj.propArray);
         });*/
         //wrapGroup.mouseover(()=>{console.log(wrapGroup);});
         mainGroup.dblclick(()=>{
-          let EffectName=workBlockSet.setEffectName;
+          EffectName=workBlockSet.setEffectName;
           GlobalStorage.input.css({top:GlobalStorage.historyOfObjects[EffectName][0].getBBox().y+28, left: GlobalStorage.historyOfObjects[EffectName][0].getBBox().x+35, width:"160px", height: "26px", position:'absolute', display:'block'});
           //console.log(GlobalStorage.historyOfObjects);
           //console.log(workBlockSet.setEffectName);
-          let innerHTML=mainGroup[1].node.innerHTML;
+          innerHTML=mainGroup[1].node.innerHTML;
           GlobalStorage.renameObj.oldName=innerHTML;
           GlobalStorage.input.val(innerHTML);
         });
@@ -129,16 +136,16 @@ console.log(obj.propArray);
             }
             workBlockSet.forEach((item, i)=> {
               if (item.node.nodeName == 'path') {
-                let PathString=Snap.parsePathString(item);//get coordunates of line
-                let offset=item.coordDif*1;
-                let MX=PathString[0][1];
-                let MY=PathString[0][2];
-                let LX=PathString[1][5];
-                let LY=PathString[1][6];
+                PathString=Snap.parsePathString(item);//get coordunates of line
+                offset=item.coordDif*1;
+                MX=PathString[0][1];
+                MY=PathString[0][2];
+                LX=PathString[1][5];
+                LY=PathString[1][6];
                 LY=(LY)+offset;
 
-                console.log(PathString);
-                let pathCoords=bezieLine(MX,MY,LX,LY);
+                //console.log(PathString);
+                pathCoords=bezieLine(MX,MY,LX,LY);
                 //this.pathCoords=bezieLine(this.ox,this.oy,destx,desty);
                 item.attr({d:`M${MX} ${MY}C${pathCoords.cp1x} ${pathCoords.cp1y} ${pathCoords.cp2x} ${pathCoords.cp2y} ${LX} ${LY}`});//shift the line to the current propertyBlock
                 //item.attr("path",`M${MX} ${MY}L${LX} ${(LY)+offset}`);//shift the line to the current propertyBlock
@@ -153,7 +160,7 @@ console.log(obj.propArray);
 
         });
         propGroup.mouseover((event)=>{
-          let target=event.target;
+          target=event.target;
         if(target.tagName == 'rect'&&target.className!=='prop-wrapper')
           {
             if(GlobalStorage.currentLine&&target.getAttribute('propDataType')==GlobalStorage.currentLine.node.shortControlName ){//highlight of the current property block
@@ -200,17 +207,17 @@ console.log(obj.propArray);
         //console.log(GlobalStorage.currentLine);
           workBlockSet.forEach((item, i)=> {
             if (item.node.nodeName == 'path') {
-              let PathString=Snap.parsePathString(item);
-              let offset=item.coordDif*1;
-              console.log(PathString);
-              let MX=PathString[0][1];
-              let MY=PathString[0][2];
-              let LX=PathString[1][5];
-              let LY=PathString[1][6];
+              PathString=Snap.parsePathString(item);
+              offset=item.coordDif*1;
+              //console.log(PathString);
+              MX=PathString[0][1];
+              MY=PathString[0][2];
+              LX=PathString[1][5];
+              LY=PathString[1][6];
               LY=(LY)-offset
 
               //console.log(offset);
-              let pathCoords=bezieLine(MX,MY,LX,LY);
+              pathCoords=bezieLine(MX,MY,LX,LY);
               item.attr({d:`M${MX} ${MY}C${pathCoords.cp1x} ${pathCoords.cp1y} ${pathCoords.cp2x} ${pathCoords.cp2y} ${LX} ${LY}`});
               //item.attr("path",`M${MX} ${MY}L${LX} ${(LY)-offset}`);
             }
@@ -472,8 +479,8 @@ console.log(obj.propArray);
         let TimeDifferent=(GlobalStorage.clickTime.upTime-GlobalStorage.clickTime.downTime);
         if(!dblClickCheck&&e.detail!=2&&TimeDifferent<300){
           GlobalStorage.greyGround.show();
-          console.log("height",$(window).height());
-          console.log("ThisY",group.getBBox().y+28+32+112);
+          //console.log("height",$(window).height());
+          //console.log("ThisY",group.getBBox().y+28+32+112);
           if(group.getBBox().y-60<28){
             GlobalStorage.testDataY=28;
 

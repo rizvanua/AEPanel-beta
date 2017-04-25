@@ -1,53 +1,53 @@
-﻿function addExpressionFunction(effectName, propName,thisPropName,_this,multiplierStr,type){
-         var multiplierArrModif=[];        
+function addExpressionFunction(effectName, propName,thisPropName,_this,multiplierStr,type){
+         var multiplierArrModif=[];
         if(multiplierStr&&multiplierStr.length>0){
-          var multiplierArr= multiplierStr.split(',');         
-        
+          var multiplierArr= multiplierStr.split(',');
+
          for(var i=0;i<multiplierArr.length;i++){
                  var str='(thisLayer.effect("'+multiplierArr[i]+'").slider.value/100)';
-                
+
                  multiplierArrModif.push(str);
              }
-         
+
             var arrStr=multiplierArrModif.join('*');
-           
-            var expressionString='thisLayer.effect('+'"'+thisPropName+'"'+').'+type+'*'+arrStr; 
+
+            var expressionString='thisLayer.effect('+'"'+thisPropName+'"'+').'+type+'*'+arrStr;
           _this.currentLayer.effect.property(effectName).property(propName).expression=expressionString;
         }
     else{
-           
-            var expressionString='thisLayer.effect('+'"'+thisPropName+'"'+').'+type; 
+
+            var expressionString='thisLayer.effect('+'"'+thisPropName+'"'+').'+type;
             _this.currentLayer.effect.property(effectName).property(propName).expression=expressionString;
-        }     
+        }
     };
 
 function addPropertyToEffect(effectName, propName, propValue,_this){
-     
+
         _this.currentLayer.effect.property(effectName).property(propName).setValue([propValue]);
 };
 
 function checkEffectsQuantity(_this){
  if (_this.effectsQuantity!=_this.currentLayer.effect.numProperties)
- { 
+ {
      var effectArray=[];
-      
+
       _this.effectsQuantity=_this.currentLayer.effect.numProperties;
-      
+
       for(var i=_this.currentLayer.effect.numProperties; i--;){
-                   
+
           effectArray.push(_this.currentLayer.effect(i+1).name);
-             
-              
-          
+
+
+
           }
-      
+
      return effectArray;
   }
 else{
-return false;    
+return false;
     }
- //return 
- 
+ //return
+
 };
 
 function generatorPOI() {
@@ -63,21 +63,16 @@ function generatorPOI() {
 //MAIN CODE
 $._ext = {
   checkChangesGlobal: function() {
-      try {
     this.storedLayer;
     this.currentCompName;
     this.currentLayerName;
     this.currentEffectName;
     this.effectsQuantity;
-    var myLayers;
-    var thisLayerName;
-    var thisLayerIndex;
-    var stateScope;   
+
     if (app.project.activeItem === null) { //check if  at least one item is active
-        return false;
-      //return 100; // No one Item is active     
+      return 100; // No one Item is active
     }
-    myLayers = app.project.activeItem.selectedLayers;
+    var myLayers = app.project.activeItem.selectedLayers;
     if (myLayers && myLayers.length != 0) {
       this.storedLayer = myLayers;
     }
@@ -85,8 +80,8 @@ $._ext = {
 
     if (this.storedLayer && this.storedLayer.length != 0 && isValid(this.storedLayer[0])) {
       for (key in this.storedLayer) {
-        thisLayerName = this.storedLayer[0].name;
-        thisLayerIndex = this.storedLayer[0].index;
+        var thisLayerName = this.storedLayer[0].name;
+        var thisLayerIndex = this.storedLayer[0].index;
       }
 
 
@@ -108,17 +103,17 @@ $._ext = {
 
         return 0;
       } else if (this.currentLayer.effect.numProperties) {
-        stateScope = {
+        var stateScope = {
           selectedEffect: {
             effectName: null, // the name of selected effect
             effectIndex: null, // the index of selected effect
-            distrInst: null //the quantity of distributors                    
+            distrInst: null //the quantity of distributors
           },
           effectArray: [],
           hasVR: false
         };
 
-        if (this.currentLayer.effect('Mantra VR')) { // check if  'Mantra VR'  is on this layer 
+        if (this.currentLayer.effect('Mantra VR')) { // check if  'Mantra VR'  is on this layer
           stateScope.hasVR = true;
         }
         this.effectsQuantity = this.currentLayer.effect.numProperties;
@@ -129,7 +124,7 @@ $._ext = {
             stateScope.selectedEffect.effectName = this.currentLayer.effect(i + 1).name;
             stateScope.selectedEffect.effectIndex = this.currentLayer.effect(i + 1).propertyIndex;
           }
-          if (this.currentLayer.effect(i + 1).selected && this.currentLayer.effect(i + 1).property('Number Of Instances')) { // check if this effect is selected and this effect has            
+          if (this.currentLayer.effect(i + 1).selected && this.currentLayer.effect(i + 1).property('Number Of Instances')) { // check if this effect is selected and this effect has
             stateScope.selectedEffect.distrInst = Math.round(this.currentLayer.effect(i + 1).property('Number Of Instances').value); // get value  of property('Number Of Instances')   and assiggn to object  stateScope
           }
           stateScope.effectArray.push(this.currentLayer.effect(i + 1).name); //push current effect name into ffectArray
@@ -142,20 +137,17 @@ $._ext = {
     } else {
       return false;
     }
-} catch (err) {
-      $.writeln(err);
-      }
+
   },
   initialProjectTest: function() {
-      try {
     this.countM = 0;
     this.state = false;
     this.currentComp = app.project.activeItem;
-    var layerCount;
+
 
 
     if (this.currentComp) {
-      layerCount = this.currentComp.numLayers;
+      var layerCount = this.currentComp.numLayers;
 
       if (layerCount > 0) {
 
@@ -197,13 +189,9 @@ $._ext = {
 
       return false;
     }
-} catch (err) {
-      $.writeln(err);
-      }
   },
 
   getData: function() {
-      try {
     var Obj = {
       commonControlObj: [],
       effectsObj: [],
@@ -211,14 +199,10 @@ $._ext = {
       multiplierObj: [],
       hasVR: false
     };
-var thisEffectObj = {};
-var thisMatchName;
- var thisName;
- var layerEffect;
- var LineTo;
- var propertyOfEffect;
- var LineFrom;
- 
+    var thisMatchName;
+    var thisName;
+
+
     if (this.currentLayer.effect('Mantra VR')) {
       Obj.hasVR = true;
     }
@@ -274,16 +258,16 @@ var thisMatchName;
 
           break;
         default:
-          thisEffectObj = {
+          var thisEffectObj = {
             point: {},
             angle: {},
             slider: {},
             propArray: []
           };
 
-          thisName = this.currentLayer.effect(i + 1).name;
-          thisMatchName = this.currentLayer.effect(i + 1).matchName;
-          layerEffect = this.currentLayer.effect(i + 1);
+          var thisName = this.currentLayer.effect(i + 1).name;
+          var thisMatchName = this.currentLayer.effect(i + 1).matchName;
+          var layerEffect = this.currentLayer.effect(i + 1);
           thisEffectObj.baseEffect = thisMatchName.replace("Mettle Mantra ", "");
           thisEffectObj.name = thisName;
 
@@ -291,9 +275,9 @@ var thisMatchName;
             this.functionEffectLoop(layerEffect, d, thisEffectObj);
 
             if (layerEffect.property(d + 1).expressionEnabled && layerEffect.property(d + 1).expression.match(/\(\"([^)]+)\"\)/)) {
-              LineTo = layerEffect.name;
-              propertyOfEffect = layerEffect.property(d + 1).name;
-              LineFrom = layerEffect.property(d + 1).expression.match(/\(\"([^)]+)\"\)/)[1];
+              var LineTo = layerEffect.name;
+              var propertyOfEffect = layerEffect.property(d + 1).name;
+              var LineFrom = layerEffect.property(d + 1).expression.match(/\(\"([^)]+)\"\)/)[1];
               Obj.linesObj.push({
                 "LineFrom": LineFrom,
                 "LineTo": LineTo,
@@ -309,13 +293,11 @@ var thisMatchName;
     }
 
     return JSON.stringify(Obj);
-    } catch (err) {
-      $.writeln(err);
-      }
   },
   applyEffect: function(effectName) { // function to apply effect from HTML5 panel
-try {
+
     var effectObj = {
+
       point: {},
       angle: {},
       slider: {},
@@ -328,35 +310,31 @@ try {
 
       for (var i = 0; i < layerEffect.numProperties; i++) {
         this.functionEffectLoop(layerEffect, i, effectObj);
+
+
       }
+
+
       return JSON.stringify(effectObj);
+
+
     }
-}catch (err) {
-      $.writeln(err);
-      }
   },
   findEffect: function(effectName) {
-try {
+
     var Obj = {
       commonControlObj: [],
       effectsObj: [],
       linesObj: [],
       multiplierObj: []
     };
-   var thisMatchName;
-   var thisName;
-   var thisEffectObj;
-   var LineTo;
-   var propertyOfEffect;
-   var LineFrom;
-   var LineFromMult ;
 
     var layerEffect = this.currentLayer.effect.property(effectName);
 
     switch (layerEffect.matchName) {
       case "ADBE Angle Control":
-        thisMatchName = layerEffect.matchName;
-        thisName = effectName;
+        var thisMatchName = layerEffect.matchName;
+        var thisName = effectName;
         Obj.commonControlObj.push({
           baseEffect: thisMatchName.replace("ADBE ", ""),
           realName: thisName
@@ -364,8 +342,8 @@ try {
 
         break;
       case "ADBE Slider Control":
-        thisMatchName = layerEffect.matchName;
-        thisName = effectName;
+        var thisMatchName = layerEffect.matchName;
+        var thisName = effectName;
         if (thisName.search(/Multiplier/i) > -1) {
           Obj.multiplierObj.push({
             baseEffect: thisMatchName.replace("ADBE ", ""),
@@ -379,8 +357,8 @@ try {
         }
         break;
       case "ADBE Point Control":
-        thisMatchName = layerEffect.matchName;
-        thisName = effectName;
+        var thisMatchName = layerEffect.matchName;
+        var thisName = effectName;
         Obj.commonControlObj.push({
           baseEffect: thisMatchName.replace("ADBE ", ""),
           realName: thisName
@@ -388,8 +366,8 @@ try {
 
         break;
       case "Mettle Mantra VR":
-        thisMatchName = layerEffect.matchName;
-        thisName = effectName;
+        var thisMatchName = layerEffect.matchName;
+        var thisName = effectName;
         Obj.effectsObj.push({
           baseEffect: thisMatchName,
           name: thisName
@@ -398,15 +376,15 @@ try {
 
         break;
       default:
-        thisEffectObj = {
+        var thisEffectObj = {
           point: {},
           angle: {},
           slider: {},
           propArray: []
         };
 
-        thisName = effectName;
-        thisMatchName = layerEffect.matchName;
+        var thisName = effectName;
+        var thisMatchName = layerEffect.matchName;
         thisEffectObj.baseEffect = thisMatchName.replace("Mettle Mantra ", "");
         thisEffectObj.name = thisName;
 
@@ -414,10 +392,10 @@ try {
           this.functionEffectLoop(layerEffect, d, thisEffectObj);
 
           if (layerEffect.property(d + 1).expressionEnabled && layerEffect.property(d + 1).expression.match(/\(\"([^)]+)\"\)/)) {
-            LineTo = layerEffect.name;
-            propertyOfEffect = layerEffect.property(d + 1).name;
-            LineFrom = layerEffect.property(d + 1).expression.match(/\(\"([^)]+)\"\)/)[1];
-            LineFromMult = layerEffect.property(d + 1).expression.match(/\(\"([^)]+)\"\)/)[3];
+            var LineTo = layerEffect.name;
+            var propertyOfEffect = layerEffect.property(d + 1).name;
+            var LineFrom = layerEffect.property(d + 1).expression.match(/\(\"([^)]+)\"\)/)[1];
+            var LineFromMult = layerEffect.property(d + 1).expression.match(/\(\"([^)]+)\"\)/)[3];
 
             Obj.linesObj.push({
               "LineFrom": LineFrom,
@@ -432,12 +410,8 @@ try {
     }
 
     return JSON.stringify(Obj);
-    }catch (err) {
-      $.writeln(err);
-      }
   },
   applyEffectPresets: function(effectName, propertyOfEffect) {
-      try{
     var effectObj = {
       point: {},
       angle: {},
@@ -446,31 +420,38 @@ try {
       linesObj: []
     }
     var LineTo, propertyOfEffectName, LineFrom,LineFromMult, result, arrData, string_array;
-    var propertyNew = [];    
+    var propertyNew = [];
+    //var layerEffect;
+    //$.writeln(effectName);
+    //$.writeln(propertyOfEffect);
+    /*for(var keys in propertyOfEffect){
+        $.writeln(key);
+        $.writeln(propertyOfEffect[keys].expression);
+        }*/
     var layerEffect = this.currentLayer.Effects.addProperty(effectName);
     if (propertyOfEffect.effectName){
         layerEffect.name=propertyOfEffect.effectName;
-        }    
+        }
     effectObj.name = layerEffect.name;
 
     //
     for (var i = 0; i < layerEffect.numProperties; i++) {
       this.functionEffectLoop(layerEffect, i, effectObj);
     }
-    //       
+    //
 
     for (var key in propertyOfEffect) {
-        
+
         //$.writeln(propertyOfEffect[key].expression);
       if (typeof propertyOfEffect[key] == "object") {
 
 
 
         if (typeof propertyOfEffect[key].value == 'number' || typeof propertyOfEffect[key].value == 'object' ||typeof propertyOfEffect[key].value == 'string' && propertyOfEffect[key].value != 'null') {
-        
+
           var propString = propertyOfEffect[key].value;
           if (typeof propertyOfEffect[key].value == "string") {
-            string_array = propString.split(',');            
+            string_array = propString.split(',');
             propertyNew = [];
             for (var i = 0; i < string_array.length; i++) {
 
@@ -489,11 +470,11 @@ try {
             layerEffect.property(key).setValue(propertyNew);
           } else if(typeof propertyOfEffect[key].value == 'object' ) {
             result = propertyOfEffect[key].value;
-            //$.writeln(result);
+            $.writeln(result);
             layerEffect.property(key).setValue(result);
           }
       else{
-             result = propertyOfEffect[key].value;            
+             result = propertyOfEffect[key].value;
             layerEffect.property(key).setValue([result]);
           }
         }
@@ -501,7 +482,7 @@ try {
 
           layerEffect.property(key).expression = propertyOfEffect[key].expression;
 
-          //                        
+          //
           if (layerEffect.property(key).expressionEnabled && layerEffect.property(key).expression.match(/\(\"([^)]+)\"\)/)) {
             LineTo = layerEffect.name;
             propertyOfEffectName = layerEffect.property(key).name;
@@ -523,82 +504,44 @@ try {
 
 
     return JSON.stringify(effectObj);
-} catch (err) {
-      $.writeln(err);
-      }
+
   },
 
   createControl: function(controlType) {
-      try{
     var Control = this.currentLayer.Effects.addProperty(controlType);
     return Control.name;
-    } catch (err) {
-      $.writeln(err);
-      }
   },
   setMasterSliderControlValue: function(data) {
-      try{
     this.currentLayer.effect('Mantra VR').property('Master').setValue(data);
-        } catch (err) {
-      $.writeln(err);
-      }
-
   },
   getMasterSliderControlValue: function() {
-       try{
     var value = this.currentLayer.effect('Mantra VR').property('Master').value;
     return value;
-    } catch (err) {
-      $.writeln(err);
-      }
   },
   getSliderControlValue: function(controlName) {
-       try{
     var value = this.currentLayer.effect.property(controlName).property("Slider").value;
     return value;
-    } catch (err) {
-      $.writeln(err);
-      }
   },
   setSliderControlValue: function(controlName, data) {
-     try{ 
     this.currentLayer.effect.property(controlName).property("Slider").setValue(data);
-    } catch (err) {
-      $.writeln(err);
-      }
   },
   getPointControlValue: function(controlName) {
-      try{
     var value = this.currentLayer.effect.property(controlName).property("Point").value;
     value.push(this.itemWidth)
     value.push(this.itemHight)
     return value;
-    } catch (err) {
-      $.writeln(err);
-      }
   },
   setPointControlValue: function(controlName, data) {
-try{
+
     var dataArr = data.split(',');
     this.currentLayer.effect.property(controlName).property("Point").setValue(dataArr);
-    } catch (err) {
-      $.writeln(err);
-      }
   },
   getAngleControlValue: function(controlName) {
-      try{
     var value = this.currentLayer.effect.property(controlName).property("Angle").value;
     return value;
-    } catch (err) {
-      $.writeln(err);
-      }
   },
   setAngleControlValue: function(controlName, data) {
-       try{
     this.currentLayer.effect.property(controlName).property("Angle").setValue(data);
-    } catch (err) {
-      $.writeln(err);
-      }
   },
   addCommonControls: function(effectName, propName, thisPropName, type, multiplierStr) {
     //$.writeln(type);
@@ -622,28 +565,21 @@ try{
 
   },
   moveEffectIndex: function(effectName, number) {
- try{
+
+
     var number = (number * 1);
     if (number > 0 && effectName) {
       this.currentLayer.effect.property(effectName).moveTo(number);
       return number;
     }
- }catch (err) {
-      $.writeln(err);
-      }
   },
 
   renameEffect: function(oldEffectName, newEffectName) {
-    try{  
     this.currentLayer.effect.property(oldEffectName).name = newEffectName;
     return newEffectName;
-    }catch (err) {
-      $.writeln(err);
-      }
   },
 
   deleteEffect: function(effectName) {
-      try{
     if (effectName != "null" && this.currentLayer.effect.property(effectName)) {
 
 
@@ -653,38 +589,35 @@ try{
 
       return effectName;
     }
-}catch (err) {
-      $.writeln(err);
-      }
 
   },
   deletePropExpression: function(effectName, propertyName) {
-try{
+
     this.currentLayer.effect.property(effectName).property(propertyName).expressionEnabled = false;
     this.currentLayer.effect.property(effectName).property(propertyName).expression = "";
-    }catch (err) {
-      $.writeln(err);
-      }
   },
 
   deleteCommonControl: function(arrayOfLinkedEffects, thisCommonContrlName) {
-    try{
-        this.effectNameArr = arrayOfLinkedEffects.split(';');
-        //
-        function deleteFromEffects(callback) {
-          if (this.effectNameArr[0] != '') {
-            for (var i = 0; i < this.effectNameArr.length; i++) {
 
-              var effectNameArr = JSON.parse(this.effectNameArr[i]);
 
-              if (this.currentLayer.effect.property(effectNameArr.Lineto)) {
-                this.currentLayer.effect.property(effectNameArr.Lineto).property(effectNameArr.propertyOfEffect).expressionEnabled = false;
-                this.currentLayer.effect.property(effectNameArr.Lineto).property(effectNameArr.propertyOfEffect).expression = "";
-              }
+    this.effectNameArr = arrayOfLinkedEffects.split(';');
 
-            }
+
+    //
+    function deleteFromEffects(callback) {
+      if (this.effectNameArr[0] != '') {
+        for (var i = 0; i < this.effectNameArr.length; i++) {
+
+          var effectNameArr = JSON.parse(this.effectNameArr[i]);
+
+          if (this.currentLayer.effect.property(effectNameArr.Lineto)) {
+            this.currentLayer.effect.property(effectNameArr.Lineto).property(effectNameArr.propertyOfEffect).expressionEnabled = false;
+            this.currentLayer.effect.property(effectNameArr.Lineto).property(effectNameArr.propertyOfEffect).expression = "";
           }
-          callback.call(this);
+
+        }
+      }
+      callback.call(this);
     };
     deleteFromEffects.call(this, function() {
       if (this.currentLayer.effect.property(thisCommonContrlName)) {
@@ -692,50 +625,36 @@ try{
       }
     });
     //
+
+
     this.currentLayer.selected = true;
-    }catch (err) {
-      $.writeln(err);
-      }
   },
   selectEffect: function(effectName) {
-try{
+
     this.currentLayer.effect.property(effectName).selected = true;
- }catch (err) {
-      $.writeln(err);
-      }
+
   },
   selectCommonControl: function(effectName) {
-      try{
     this.currentLayer.effect.property(effectName).selected = true;
-    }catch (err) {
-      $.writeln(err);
-      }
 
   },
   unSelectCommonControl: function(effectName) {
-      try{
     if (this.currentLayer.effect.property(effectName)) {
       this.currentLayer.effect.property(effectName).selected = false;
     }
- }catch (err) {
-      $.writeln(err);
-      }
 
 
   },
   resetLayer: function() {
-      try{
     var arrObj = [];
-    var propName;
-    var effectHasBeenReseted;
-    var obj;
+
     for (var i = this.currentLayer.effect.numProperties; i--;) {
-      obj = {};
+      var obj = {};
       obj.currentName = this.currentLayer.effect(i + 1).name;
       obj.matchName = this.currentLayer.effect(i + 1).matchName
       for (var d = 0; d < this.currentLayer.effect(obj.currentName).numProperties; d++) {
         if (this.currentLayer.effect(obj.currentName).property(d + 1).expressionEnabled) {
-          propName = this.currentLayer.effect(obj.currentName).property(d + 1).name;
+          var propName = this.currentLayer.effect(obj.currentName).property(d + 1).name;
           obj[propName] = this.currentLayer.effect(obj.currentName).property(d + 1).expression;
         }
       }
@@ -744,7 +663,7 @@ try{
     }
 
     for (var a = arrObj.length; a--;) {
-      effectHasBeenReseted = this.currentLayer.Effects.addProperty(arrObj[a].matchName);
+      var effectHasBeenReseted = this.currentLayer.Effects.addProperty(arrObj[a].matchName);
       effectHasBeenReseted.name = arrObj[a].currentName;
       for (var key in arrObj[a]) {
         if (key != 'matchName' && key != 'currentName') {
@@ -753,12 +672,9 @@ try{
       }
     }
     this.currentLayer.selected = true;
-}catch (err) {
-      $.writeln(err);
-      }
+
   },
   clearLayer: function(toClearArr) {
-      try{
     var effectArr = toClearArr.split(',');
 
     for (var i = 0; i < effectArr.length; i++) {
@@ -767,9 +683,6 @@ try{
         this.currentLayer.effect(effectArr[i]).remove();
       }
     }
-}catch (err) {
-      $.writeln(err);
-      }
   },
   functionEffectLoop: function(layerEffect, d, Obj) { //this function is used in Loop of effect properties
     if (layerEffect.property(d + 1).name != 'Frame Layout' && layerEffect.property(d + 1).name != 'Compositing Options') {

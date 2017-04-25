@@ -7,7 +7,7 @@ function deletePropertyInEffectBlock(propertyBlock, workBlockSet){
     let effectName=workBlockSet.setEffectName;
     let propertyName=GlobalStorage.controlProp.name;
     let itemLineFrom;
-    console.log(GlobalStorage.controlProp);
+    //console.log(GlobalStorage.controlProp);
     csInterface.evalScript(`$._ext.deletePropExpression("${effectName}","${propertyName}")`,(res)=>{//Remove property expression from  EffectBlock
       workBlockSet.forEach((item,num)=>{
         if(item.node.nodeName=="path"&&item.LineTo==effectName&&item.propertyOfEffect==propertyName){
@@ -24,8 +24,7 @@ function deletePropertyInEffectBlock(propertyBlock, workBlockSet){
 
       GlobalStorage.historyOfObjects[itemLineFrom].forEach((item,num)=>{
           if(item.type=="path"&&item.node.lineFromCyrcle=="circleRight"&&item.propertyOfEffect==propertyName&&item.LineTo==effectName){
-            //console.log(item);
-            //console.log(GlobalStorage.historyOfObjects[itemLineFrom][num]);
+            
             delete GlobalStorage.historyOfObjects[itemLineFrom][num];
           }
       });

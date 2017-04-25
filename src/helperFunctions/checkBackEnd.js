@@ -21,41 +21,39 @@ class checkBackEnd{
     this.mouseEnterEvent();
     this.mouseLeaveEvent();
     GlobalStorage.glassId=document.getElementById("glass");
+    this.workBlockSet;
+    this.startObject;
   };
 
   startCheck() {
-    //function startCheckFunction(){
+
       if(this.status!='true'){//check status if status is not true this means that no one layer is active and we restart function startCheck();
         this.AnimationFrameStart=setTimeout(()=> {
 
           csInterface.evalScript(`$._ext. initialProjectTest()`, (res)=>{
-            //console.log('START FUNCTION');
-            //console.log(res);
-//console.log(res);
+
             this.status=res;//get value for status from ExtendScript ('true' or 'false')
-           if(this.status!='true'/*&&GlobalStorage.hasVR===false*/){
+           if(this.status!='true'){
                   checkMantraVR();
-                 //GlobalStorage.glassId.style.display="block";
+
            }
           });
 
                 this.startCheck();
-//console.log('firstEvent');
+
             }, 1000);
 
       }
       else// in this case status is true and we can start to build Panel
       {
-            //this.glassId=document.getElementById("glass");
-            //GlobalStorage.glassId.style.display="none";
+
             GlobalStorage.hasVR=true;
             checkMantraVR();
             this.createBlock();// get gata about stage from backEnd and create block on Panel
             this.functionCheckAE();
 
       }
-    //};
-    //startCheckFunction();
+
 
 
   }
@@ -65,9 +63,7 @@ class checkBackEnd{
   mouseEnterEvent(){
 
     document.addEventListener('mouseenter',(e)=>{
-      //console.log(e);
-        //console.log("mouseEnterEvent");
-        //console.log(this);
+
         clearTimeout(this.AnimationFrame);
 
 
@@ -80,8 +76,7 @@ class checkBackEnd{
 
       csInterface.evalScript(`$._ext.checkChangesGlobal()`, (res)=>{
 
-          //console.log(res);
-          //console.log(res===undefined);
+
           if(res&&res==0){//CHECK if we'have gone onto new Layer
             let promise = new Promise(
                         (resolve) => {
@@ -97,7 +92,7 @@ class checkBackEnd{
                       );
                       promise.then (
                         (resolve)=>{
-                          //console.log('NEW LAYER');
+
                           this.createBlock();
                         }
 
@@ -118,12 +113,11 @@ class checkBackEnd{
 
           }
           else if(res&res==100||res=='100'){// No one layer is selected
-            //console.log('SILENCE IS GOLD');
+
             GlobalStorage.historyOfObjects={
               itemArray:[]
             }
-            //GlobalStorage.undermostEffectBlock.y=10; //reset global y coodinate
-            //GlobalStorage.undermostCommonControlBlock.y=10;
+
           }
           else if(res&&res!="undefined"){
 
@@ -134,14 +128,12 @@ class checkBackEnd{
                 if(GlobalStorage.historyOfObjects.itemArray.length>0){
                   GlobalStorage.historyOfObjects.itemArray.forEach((item)=>{
                     GlobalStorage.historyOfObjects[item.name].remove();
-                    //console.log(item);
-                    //console.log(GlobalStorage.historyOfObjects[item.name]);
+
                   });
                 }
             }
 
-            //console.log(res);
-            //console.log(GlobalStorage.historyOfObjects);
+
 
             let resObj=JSON.parse(res);
             GlobalStorage.hasVR=resObj.hasVR;
@@ -149,16 +141,13 @@ class checkBackEnd{
 
 
             this.effectCheckArr=resObj.effectArray;
-            //this.effectCheckArr=res.split(',');
 
-            //console.log(this.effectCheckArr);
             if(!GlobalStorage.effectCheckArr||!this.effectCheckArr){
                 GlobalStorage.glassId.style.display="block";
               return false
             }
             if(GlobalStorage.effectCheckArr.length>this.effectCheckArr.length){
-              //console.log(GlobalStorage.effectCheckArr);
-              //console.log(this.effectCheckArr);
+
               let promise = new Promise(
                         (resolve) => {
                           let blockToRemove=_.difference(GlobalStorage.effectCheckArr, this.effectCheckArr);
@@ -179,16 +168,16 @@ class checkBackEnd{
 
             }
             else if(GlobalStorage.effectCheckArr.length<this.effectCheckArr.length){
-//console.log("Create");
+
             let cordX;
             let blockToCreate=_.difference(this.effectCheckArr, GlobalStorage.effectCheckArr);
             blockToCreate.forEach((i)=>{
-              //console.log(i);
-              csInterface.evalScript(`$._ext.findEffect("${i}")`, (res)=>{
-                //console.log(res);
-                let startObject=JSON.parse(res);
 
-                  this.functionCreateBlocks(startObject,cordX);
+              csInterface.evalScript(`$._ext.findEffect("${i}")`, (res)=>{
+
+                this.startObject=JSON.parse(res);
+
+                  this.functionCreateBlocks(this.startObject,cordX);
 
 
 
@@ -196,27 +185,17 @@ class checkBackEnd{
 
             });
 
-//console.log(GlobalStorage.effectCheckArr);
-//console.log(this.effectCheckArr);
+
               GlobalStorage.effectCheckArr=this.effectCheckArr;
-              //console.log(res);
-              //this.createBlock(res);
 
             }
             else {
-              //console.log('RENAME');
-              //console.log(res);
-              //console.log(GlobalStorage.effectCheckArr);
-              //console.log(this.effectCheckArr);
-              //console.log(resObj.selectedEffect.effectName);
-              //console.log(GlobalStorage.historyOfObjects[resObj.selectedEffect.effectName]);
-              //console.log(GlobalStorage.toDelete);
-              let workBlockSet=GlobalStorage.historyOfObjects[resObj.selectedEffect.effectName];
-              if(workBlockSet&&workBlockSet.setEffectName){
-                new activeBlockFunctionsClass().activeEffectBlock(workBlockSet);
+              this.workBlockSet=GlobalStorage.historyOfObjects[resObj.selectedEffect.effectName];
+              if(this.workBlockSet&&this.workBlockSet.setEffectName){
+                new activeBlockFunctionsClass().activeEffectBlock(this.workBlockSet);
               }
-              else if(workBlockSet&&workBlockSet.thisCommonContrlName){
-                new activeBlockFunctionsClass().activeNotEffectBlock(workBlockSet);
+              else if(this.workBlockSet&&this.workBlockSet.thisCommonContrlName){
+                new activeBlockFunctionsClass().activeNotEffectBlock(this.workBlockSet);
               }
 
               if(this.effectCheckArr.join(';')!==GlobalStorage.effectCheckArr.join(';')){//convert arrays to string and match them if they are not equal it need rename effect
@@ -266,11 +245,11 @@ class checkBackEnd{
 
       //console.log('WORK');
       //console.log(JSON.parse(res));
-      let startObject=JSON.parse(res);
-      GlobalStorage.hasVR=startObject.hasVR;
+      this.startObject=JSON.parse(res);
+      GlobalStorage.hasVR=this.startObject.hasVR;
       checkMantraVR();
-      if(startObject.hasVR===true){      //console.log(startObject);
-        this.functionCreateBlocks(startObject,cordX);
+      if(this.startObject.hasVR===true){      //console.log(startObject);
+        this.functionCreateBlocks(this.startObject,cordX);
       }
 
 
@@ -365,10 +344,6 @@ class checkBackEnd{
       let item=i;
       //console.log(item);
       let res=i.realName;
-      //cordY+=50;
-      //console.log('CREATE');
-      //console.log(res);
-
         let workBlock=new mainBlock().createBlockMultiplier(cordX,GlobalStorage.undermostCommonControlBlock.y+=50,item, res);
         moveEffects(workBlock);
 
@@ -387,43 +362,8 @@ class checkBackEnd{
     let newName=newNameArr[0];
     let oldName=oldNameArr[0];
 
-    //console.log(newName);
-    //console.log(oldName);
-    //console.log(GlobalStorage.historyOfObjects[oldName]);
     if(GlobalStorage.historyOfObjects[oldName]){
       renameBlock(oldName,newName);
-      //console.log(GlobalStorage.historyOfObjects[oldName][0]);
-      /*if(GlobalStorage.historyOfObjects[oldName].setEffectName){//Rename EffectBlock
-      GlobalStorage.historyOfObjects[oldName][0][1][1].attr({text:newName});
-      GlobalStorage.historyOfObjects[oldName].setEffectName=newName;
-      GlobalStorage.historyOfObjects[newName]=GlobalStorage.historyOfObjects[oldName];
-      delete GlobalStorage.historyOfObjects[oldName];
-      //console.log(GlobalStorage.historyOfObjects[newName]);
-      GlobalStorage.historyOfObjects[newName].forEach((i)=>{
-        if(i.node.nodeName=='path'){
-          i.LineTo=newName;
-        }
-      });
-
-    }
-    else if(GlobalStorage.historyOfObjects[oldName].thisCommonContrlName){//Rename CommonControlBlock
-      GlobalStorage.historyOfObjects[oldName][0][1].attr({text:newName});
-      GlobalStorage.historyOfObjects[oldName].thisCommonContrlName=newName;
-      //console.log(GlobalStorage.historyOfObjects[oldName]);
-      //let thisNewName=newName.replace(" Control", "");
-      let thisNewName=newName;
-      //console.log(GlobalStorage.historyOfObjects[oldName][2]);
-      //GlobalStorage.historyOfObjects[oldName][2].attr({text:thisNewName})
-      GlobalStorage.historyOfObjects[oldName].currentName=thisNewName;
-      GlobalStorage.historyOfObjects[thisNewName]=GlobalStorage.historyOfObjects[oldName];
-      delete GlobalStorage.historyOfObjects[oldName];
-      //console.log(GlobalStorage.historyOfObjects[thisNewName]);
-      GlobalStorage.historyOfObjects[thisNewName].forEach((i)=>{
-        if(i.node.nodeName=='path'){
-          i.LineFrom=thisNewName;
-        }
-      });
-    }*/
     }
 
 

@@ -17,15 +17,13 @@ function renameBlock(oldName,newName){
   else if(GlobalStorage.historyOfObjects[oldName].thisCommonContrlName){//Rename CommonControlBlock
     GlobalStorage.historyOfObjects[oldName][0][1].attr({text:newName});
     GlobalStorage.historyOfObjects[oldName].thisCommonContrlName=newName;
-    //console.log(GlobalStorage.historyOfObjects[oldName]);
-    //let thisNewName=newName.replace(" Control", "");
+
     let thisNewName=newName;
-    //console.log(GlobalStorage.historyOfObjects[oldName][2]);
-    //GlobalStorage.historyOfObjects[oldName][2].attr({text:thisNewName})
+
     GlobalStorage.historyOfObjects[oldName].currentName=thisNewName;
     GlobalStorage.historyOfObjects[thisNewName]=GlobalStorage.historyOfObjects[oldName];
     delete GlobalStorage.historyOfObjects[oldName];
-    //console.log(GlobalStorage.historyOfObjects[thisNewName]);
+    
     GlobalStorage.historyOfObjects[thisNewName].forEach((i)=>{
       if(i.node.nodeName=='path'&&i.node.lineFromCyrcle=="circleRight"){
         i.LineFrom=thisNewName;
